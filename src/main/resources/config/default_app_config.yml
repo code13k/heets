@@ -1,0 +1,16 @@
+# Server port
+port:
+  get_http: 55200
+  set_http: 55201
+  api_http: 55202
+
+# Cache
+cache:
+  default_browser_cache_expiration: 0
+  default_ttl: 60
+
+# Cluster
+cluster:
+  port: 55210
+  nodes:
+    - 127.0.0.1
