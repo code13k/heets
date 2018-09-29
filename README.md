@@ -16,8 +16,7 @@ port:
 
 # Cache
 cache:
-  default_browser_cache_expiration: 0
-  default_ttl: 60
+  default_expires: 60
 
 # Cluster
 cluster:
@@ -99,9 +98,8 @@ http://example.com:{port}/{key}
 http://example.com:55200/example_key
 {
 	"value": "Test value",
-	"content_type": "plain/text",
-	"browser_cache_expiration": 200,
-	"ttl": 200
+	"content_type": "text/plain",
+	"expires": 200
 }
 ```
 

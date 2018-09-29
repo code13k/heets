@@ -28,8 +28,7 @@ public class SetHttpServer extends AbstractVerticle {
 
     // Const
     public static final int PORT = AppConfig.getInstance().getPort().getSetHttp();
-    public static final int DEFAULT_BROWSER_CACHE_EXPIRATION = AppConfig.getInstance().getCache().getDefaultBrowserCacheExpiration();
-    public static final int DEFAULT_TTL_SECONDS = AppConfig.getInstance().getCache().getDefaultTtl();
+    public static final int DEFAULT_EXPIRES = AppConfig.getInstance().getCache().getDefaultExpires();
 
 
     /**
@@ -137,24 +136,16 @@ public class SetHttpServer extends AbstractVerticle {
                             // Nothing
                         }
 
-                        // BrowserCacheExpiration
-                        int browserCacheExpiration = DEFAULT_BROWSER_CACHE_EXPIRATION;
+                        // Expires
+                        int expires = DEFAULT_EXPIRES;
                         try {
-                            browserCacheExpiration = jsonObject.get("browser_cache_expiration").getAsInt();
-                        } catch (Exception e) {
-                            // Nothing
-                        }
-
-                        // TTL
-                        long ttl = DEFAULT_TTL_SECONDS;
-                        try {
-                            ttl = jsonObject.get("ttl").getAsLong();
+                            expires = jsonObject.get("expires").getAsInt();
                         } catch (Exception e) {
                             // Nothing
                         }
 
                         // Handle
-                        handleRequest(routingContext, key, value, contentType, browserCacheExpiration, ttl);
+                        handleRequest(routingContext, key, value, contentType, expires);
                     }
                 });
             }
@@ -199,26 +190,17 @@ public class SetHttpServer extends AbstractVerticle {
                             // Nothing
                         }
 
-                        // BrowserCacheExpiration
-                        int browserCacheExpiration = DEFAULT_BROWSER_CACHE_EXPIRATION;
+                        // Expires
+                        int expires = DEFAULT_EXPIRES;
                         try {
-                            String temp = param.get("browser_cache_expiration");
-                            browserCacheExpiration = Integer.parseInt(temp);
-                        } catch (Exception e) {
-                            // Nothing
-                        }
-
-                        // TTL
-                        long ttl = DEFAULT_TTL_SECONDS;
-                        try {
-                            String temp = param.get("ttl");
-                            ttl = Long.parseLong(temp);
+                            String temp = param.get("expires");
+                            expires = Integer.parseInt(temp);
                         } catch (Exception e) {
                             // Nothing
                         }
 
                         // Handle
-                        handleRequest(routingContext, key, value, contentType, browserCacheExpiration, ttl);
+                        handleRequest(routingContext, key, value, contentType, expires);
                     }
                 });
             }
@@ -267,26 +249,17 @@ public class SetHttpServer extends AbstractVerticle {
                                     // Nothing
                                 }
 
-                                // BrowserCacheExpiration
-                                int browserCacheExpiration = DEFAULT_BROWSER_CACHE_EXPIRATION;
+                                // Expires
+                                int expires = DEFAULT_EXPIRES;
                                 try {
-                                    String temp = form.get("browser_cache_expiration");
-                                    browserCacheExpiration = Integer.parseInt(temp);
-                                } catch (Exception e) {
-                                    // Nothing
-                                }
-
-                                // TTL
-                                long ttl = DEFAULT_TTL_SECONDS;
-                                try {
-                                    String temp = form.get("ttl");
-                                    ttl = Long.parseLong(temp);
+                                    String temp = form.get("expires");
+                                    expires = Integer.parseInt(temp);
                                 } catch (Exception e) {
                                     // Nothing
                                 }
 
                                 // Handle
-                                handleRequest(routingContext, key, value, contentType, browserCacheExpiration, ttl);
+                                handleRequest(routingContext, key, value, contentType, expires);
                             }
                         });
                     } else {
@@ -302,17 +275,16 @@ public class SetHttpServer extends AbstractVerticle {
     /**
      * Handle request
      */
-    private void handleRequest(RoutingContext routingContext, String key, String value, String contentType, int browserCacheExpiration, long ttl) {
+    private void handleRequest(RoutingContext routingContext, String key, String value, String contentType, int expires) {
         // Log
         mLogger.trace("key = " + key);
         mLogger.trace("value = " + value);
         mLogger.trace("contentType = " + contentType);
-        mLogger.trace("browserCacheExpiration = " + browserCacheExpiration);
-        mLogger.trace("ttl = " + ttl);
+        mLogger.trace("expires = " + expires);
 
         // Process
-        CacheData cacheData = new CacheData(value, contentType, browserCacheExpiration);
-        ClusteredCache.getInstance().set(key, cacheData, ttl, new Consumer<Boolean>() {
+        CacheData cacheData = new CacheData(value, contentType, expires);
+        ClusteredCache.getInstance().set(key, cacheData, new Consumer<Boolean>() {
             @Override
             public void accept(Boolean result) {
                 if (result == true) {

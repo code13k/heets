@@ -81,18 +81,12 @@ public class AppConfig extends BasicConfig {
 
             // CacheInfo
             LinkedHashMap cacheObject = (LinkedHashMap) yamlObject.get("cache");
-            Integer cacheDefaultBrowserExpiration = (Integer) cacheObject.get("default_browser_cache_expiration");
-            if (cacheDefaultBrowserExpiration < 0) {
-                mLogger.error("Invalid default_browser_cache_expiration of cache : " + cacheDefaultBrowserExpiration);
+            Integer cacheDefaultExpires = (Integer) cacheObject.get("default_expires");
+            if (cacheDefaultExpires <= 0) {
+                mLogger.error("Invalid default_expires of cache : " + cacheDefaultExpires);
                 return false;
             }
-            Integer cacheDefaultTtl = (Integer) cacheObject.get("default_ttl");
-            if (cacheDefaultTtl <= 0) {
-                mLogger.error("Invalid default_ttl of cache : " + cacheDefaultTtl);
-                return false;
-            }
-            mCacheInfo.setDefaultBrowserCacheExpiration(cacheDefaultBrowserExpiration);
-            mCacheInfo.setDefaultTtl(cacheDefaultTtl);
+            mCacheInfo.setDefaultExpires(cacheDefaultExpires);
 
             // ClusterInfo
             LinkedHashMap clusterObject = (LinkedHashMap) yamlObject.get("cluster");
@@ -131,8 +125,7 @@ public class AppConfig extends BasicConfig {
         mLogger.info("api_http of PortInfo = " + mPortInfo.getApiHttp());
 
         // CacheInfo
-        mLogger.info("default_browser_cache_expiration of CacheInfo = " + mCacheInfo.getDefaultBrowserCacheExpiration());
-        mLogger.info("default_ttl of CacheInfo = " + mCacheInfo.getDefaultTtl());
+        mLogger.info("default_expires of CacheInfo = " + mCacheInfo.getDefaultExpires());
 
         // ClusterInfo
         mLogger.info("port of ClusterInfo = " + mClusterInfo.getPort());

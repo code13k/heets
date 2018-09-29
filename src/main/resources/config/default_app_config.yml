@@ -6,8 +6,7 @@ port:
 
 # Cache
 cache:
-  default_browser_cache_expiration: 0
-  default_ttl: 60
+  default_expires: 60
 
 # Cluster
 cluster:

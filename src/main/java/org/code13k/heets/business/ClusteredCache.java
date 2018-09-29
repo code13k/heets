@@ -71,9 +71,9 @@ public class ClusteredCache {
     /**
      * Set
      */
-    public void set(String key, CacheData value, long ttl, Consumer<Boolean> consumer) {
+    public void set(String key, CacheData value, Consumer<Boolean> consumer) {
         if (StringUtils.isEmpty(key) == false) {
-            ICompletableFuture<CacheData> future = mData.putAsync(key, value, ttl, TimeUnit.SECONDS);
+            ICompletableFuture<CacheData> future = mData.putAsync(key, value, value.getExpires(), TimeUnit.SECONDS);
             future.andThen(new ExecutionCallback<CacheData>() {
                 @Override
                 public void onResponse(CacheData response) {

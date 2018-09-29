@@ -1,22 +1,13 @@
 package org.code13k.heets.model.config.app;
 
 public class CacheInfo {
-    private int defaultBrowserCacheExpiration;
-    private int defaultTtl;
+    private int defaultExpires;
 
-    public int getDefaultBrowserCacheExpiration() {
-        return defaultBrowserCacheExpiration;
+    public int getDefaultExpires() {
+        return defaultExpires;
     }
 
-    public void setDefaultBrowserCacheExpiration(int defaultBrowserCacheExpiration) {
-        this.defaultBrowserCacheExpiration = defaultBrowserCacheExpiration;
-    }
-
-    public int getDefaultTtl() {
-        return defaultTtl;
-    }
-
-    public void setDefaultTtl(int defaultTtl) {
-        this.defaultTtl = defaultTtl;
+    public void setDefaultExpires(int defaultExpires) {
+        this.defaultExpires = defaultExpires;
     }
 }

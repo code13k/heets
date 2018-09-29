@@ -3,14 +3,14 @@ package org.code13k.heets.model;
 public class CacheData extends BasicModel {
     private String value;
     private String contentType;
-    private int browserCacheExpiration;
+    private int expires;
     private long modified;
 
 
-    public CacheData(String value, String contentType, int browserCacheExpiration){
+    public CacheData(String value, String contentType, int expires){
         setValue(value);
         setContentType(contentType);
-        setBrowserCacheExpiration(browserCacheExpiration);
+        setExpires(expires);
         updateModified();
     }
 
@@ -30,12 +30,12 @@ public class CacheData extends BasicModel {
         this.contentType = contentType;
     }
 
-    public int getBrowserCacheExpiration() {
-        return browserCacheExpiration;
+    public int getExpires() {
+        return expires;
     }
 
-    public void setBrowserCacheExpiration(int browserCacheExpiration) {
-        this.browserCacheExpiration = browserCacheExpiration;
+    public void setExpires(int expires) {
+        this.expires = expires;
     }
 
     public void updateModified(){
