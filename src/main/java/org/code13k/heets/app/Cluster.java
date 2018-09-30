@@ -40,22 +40,24 @@ public class Cluster {
      * Initialize
      */
     public void init() {
-        // Config
+        ArrayList<String> nodes = AppConfig.getInstance().getCluster().getNodes();
         Config config = new Config();
-        NetworkConfig networkConfig = config.getNetworkConfig();
-        networkConfig.setPort(AppConfig.getInstance().getCluster().getPort());
-        networkConfig.setPortCount(3);
 
-        // JoinConfig
+        // Init
+        NetworkConfig networkConfig = config.getNetworkConfig();
         JoinConfig joinConfig = networkConfig.getJoin();
         joinConfig.getMulticastConfig().setEnabled(false);
+        if (nodes != null && nodes.size() > 0) {
 
-        // TcpIpConfig
-        TcpIpConfig tcpIpConfig = joinConfig.getTcpIpConfig();
-        ArrayList<String> nodes = AppConfig.getInstance().getCluster().getNodes();
-        tcpIpConfig.setMembers(nodes);
-        tcpIpConfig.setRequiredMember(null);
-        tcpIpConfig.setEnabled(true);
+            // Port
+            networkConfig.setPort(AppConfig.getInstance().getCluster().getPort());
+
+            // TcpIpConfig
+            TcpIpConfig tcpIpConfig = joinConfig.getTcpIpConfig();
+            tcpIpConfig.setMembers(nodes);
+            tcpIpConfig.setRequiredMember(null);
+            tcpIpConfig.setEnabled(true);
+        }
 
         // Instance
         mHazelcastInstance = Hazelcast.newHazelcastInstance(config);
