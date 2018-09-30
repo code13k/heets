@@ -1,8 +1,10 @@
 package org.code13k.heets.model.config.app;
 
+import org.code13k.heets.model.BasicModel;
+
 import java.util.ArrayList;
 
-public class ClusterInfo {
+public class ClusterInfo extends BasicModel {
     private int port;
     private ArrayList<String> nodes;
 
