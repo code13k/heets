@@ -22,7 +22,7 @@ public class ClusteredCache {
     private static final Logger mLogger = LoggerFactory.getLogger(ClusteredCache.class);
 
     // Const
-    private static final String NAME = "Code13k-Heets-Expired-Cached-Map-Data";
+    private static final String NAME = "Code13k-Heets-Cache-Data";
 
     // Data
     private IMap<String, CacheData> mData = null;
