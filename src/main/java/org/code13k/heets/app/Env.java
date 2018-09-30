@@ -1,7 +1,6 @@
 package org.code13k.heets.app;
 
 import org.apache.commons.lang3.StringUtils;
-import org.code13k.heets.lib.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

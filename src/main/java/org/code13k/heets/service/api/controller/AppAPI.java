@@ -5,14 +5,6 @@ import org.code13k.heets.app.Status;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.lang.management.ManagementFactory;
-import java.lang.management.OperatingSystemMXBean;
-import java.lang.management.ThreadInfo;
-import java.lang.management.ThreadMXBean;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.HashMap;
-
 public class AppAPI extends BasicAPI {
     // Logger
     private static final Logger mLogger = LoggerFactory.getLogger(AppAPI.class);
