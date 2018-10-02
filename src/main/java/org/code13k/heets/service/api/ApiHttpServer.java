@@ -8,6 +8,7 @@ import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import org.code13k.heets.config.AppConfig;
 import org.code13k.heets.service.api.controller.AppAPI;
+import org.code13k.heets.service.api.controller.ClusterAPI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,6 +21,7 @@ public class ApiHttpServer extends AbstractVerticle {
 
     // Data
     private AppAPI mAppAPI = new AppAPI();
+    private ClusterAPI mClusterAPI = new ClusterAPI();
 
     /**
      * start()
@@ -38,6 +40,7 @@ public class ApiHttpServer extends AbstractVerticle {
         // Routing
         Router router = Router.router(vertx);
         setAppRouter(router);
+        setClusterRouter(router);
 
         // Listen
         httpServer.requestHandler(router::accept).listen();
@@ -123,6 +126,21 @@ public class ApiHttpServer extends AbstractVerticle {
                 @Override
                 public void handle(Void event) {
                     responseHttpOK(routingContext, mAppAPI.ping());
+                }
+            });
+        });
+    }
+
+    /**
+     * Set cluster router
+     */
+    private void setClusterRouter(Router router) {
+        // GET /cluster/status
+        router.route().method(HttpMethod.GET).path("/cluster/status").handler(routingContext -> {
+            routingContext.request().endHandler(new Handler<Void>() {
+                @Override
+                public void handle(Void event) {
+                    responseHttpOK(routingContext, mClusterAPI.status());
                 }
             });
         });

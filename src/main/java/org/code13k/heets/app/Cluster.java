@@ -5,11 +5,12 @@ import com.hazelcast.config.JoinConfig;
 import com.hazelcast.config.NetworkConfig;
 import com.hazelcast.config.TcpIpConfig;
 import com.hazelcast.core.*;
+import com.hazelcast.nio.Address;
 import org.code13k.heets.config.AppConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class Cluster {
     // Logger
@@ -86,6 +87,27 @@ public class Cluster {
         return mHazelcastInstance;
     }
 
+
+    /**
+     * Get all values
+     */
+    public Map<String, Object> values() {
+        HashMap<String, Object> result = new HashMap<>();
+
+        result.put("version", getClusterVersion());
+        result.put("count", getMemberCount());
+        result.put("info", getMemberInfo());
+
+        return result;
+    }
+
+    /**
+     * Get cluster version
+     */
+    public String getClusterVersion(){
+        return mHazelcastInstance.getCluster().getClusterVersion().toString();
+    }
+
     /**
      * Get clustered member count
      */
@@ -96,6 +118,23 @@ public class Cluster {
             return 1;
         }
     }
+
+    /**
+     * Get clustered member info
+     */
+    public List<Map<String, String>> getMemberInfo(){
+        ArrayList<Map<String, String>> result = new ArrayList<>();
+        mHazelcastInstance.getCluster().getMembers().forEach(member -> {
+            HashMap<String, String> item = new HashMap<>();
+            Address memberAddress = member.getAddress();
+            item.put("version", member.getVersion().toString());
+            item.put("uuid", member.getUuid());
+            item.put("address", memberAddress.getHost()+":"+memberAddress.getPort());
+            result.add(item);
+        });
+        return result;
+    }
+
 }
 
 

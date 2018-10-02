@@ -13,9 +13,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AppAPI extends BasicAPI {
-    // Logger
-    private static final Logger mLogger = LoggerFactory.getLogger(AppAPI.class);
-
     /**
      * Environment
      */
