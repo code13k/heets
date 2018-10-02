@@ -20,7 +20,7 @@ public class ClusteredCache {
     private static final Logger mLogger = LoggerFactory.getLogger(ClusteredCache.class);
 
     // Const
-    private static final String NAME = "Code13k-Heets-Cache-Data";
+    private static final String NAME = "Code13k-Heets-Clustered-Cache-Data";
 
     // Data
     private IMap<String, CacheData> mData = null;
@@ -154,5 +154,12 @@ public class ClusteredCache {
                 consumer.accept(false);
             }
         }
+    }
+
+    /**
+     * Get cached data count
+     */
+    public int size(){
+        return mData.size();
     }
 }
