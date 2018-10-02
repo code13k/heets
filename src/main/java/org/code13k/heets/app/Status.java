@@ -1,5 +1,6 @@
 package org.code13k.heets.app;
 
+import org.code13k.heets.business.ClusteredCache;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -72,6 +73,9 @@ public class Status {
 
         // Clustered member count
         sb.append(", ClusteredCount=" + Cluster.getInstance().getMemberCount());
+
+        // Cached data count
+        sb.append(", CachedCount=" + ClusteredCache.getInstance().size());
 
         // End
         mLogger.info(sb.toString());
