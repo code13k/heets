@@ -19,6 +19,33 @@ http://example.com:55202/app/ping
 ```
 
 
+# API (Cluster)
+
+## GET /cluster/status
+Get cluster status
+```json
+{
+  "data": {
+    "count": 2,
+    "version": "3.10",
+    "info": [
+      {
+        "address": "127.0.0.1:55210",
+        "version": "3.10.5",
+        "uuid": "65db4bbc-5b94-4009-a65b-54e0d4e51366"
+      },
+      {
+        "address": "127.0.0.1:55211",
+        "version": "3.10.5",
+        "uuid": "f121af0f-3445-465a-bdf6-af240bae035f"
+      },
+      ...
+    ]
+  }
+}
+```
+
+
 # API (App)
 
 ## GET /app/env
