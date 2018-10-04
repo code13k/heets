@@ -1,0 +1,68 @@
+# API Server
+Heets has three server. One is a getter server, another is setter server, and the other is restful API server.
+
+You can request api via HTTP.
+
+
+### Usage
+```html
+http://example.com:{port}/{domain}/{method}
+```
+
+
+### Example
+```html
+http://example.com:55202/app/env
+http://example.com:55202/app/status
+http://example.com:55202/app/hello
+http://example.com:55202/app/ping
+```
+
+
+# API (App)
+
+## GET /app/env
+Get application environments
+```json
+{
+  "data":{
+    "applicationVersion": "1.4.0",
+    "hostname": "hostname",
+    "osVersion": "10.11.6",
+    "jarFile": "code13k-heets-1.0.0-alpha.1.jar",
+    "javaVersion": "1.8.0_25",
+    "ip": "192.168.0.121",
+    "javaVendor": "Oracle Corporation",
+    "osName": "Mac OS X",
+    "cpuProcessorCount": 4
+  }
+}
+```
+
+## GET /app/status
+Get application status
+```json
+{
+  "data":{
+    "threadInfo":{...},
+    "cpuUsage": 2.88,
+    "threadCount": 25,
+    "currentDate": "2018-10-02T01:15:21.290+09:00",
+    "startedDate": "2018-10-02T01:14:40.995+09:00",
+    "runningTimeHour": 0,
+    "vmMemoryUsage":{...}
+  }
+}
+```
+
+## GET /app/hello
+Hello, World
+```json
+{"data":"world"}
+```
+
+## GET /app/ping
+Ping-Pong
+```json
+{"data":"pong"}
+
