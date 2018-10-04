@@ -82,6 +82,29 @@ Get application status
 }
 ```
 
+## GET /app/config
+Get application configuration
+```json
+{
+  "data": {
+    "cluster": {
+      "nodes": [
+        "127.0.0.1"
+      ],
+      "port": 55210
+    },
+    "cache": {
+      "defaultExpires": 60
+    },
+    "port": {
+      "setHttp": 55201,
+      "apiHttp": 55202,
+      "getHttp": 55200
+    }
+  }
+}
+```
+
 ## GET /app/hello
 Hello, World
 ```json
