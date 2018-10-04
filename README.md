@@ -13,10 +13,10 @@ You can build high availability(HA) systems by clustering node.
 
 
 
-### ![Configuration](./doc/configuration.md)
-### ![Getter Server](./doc/getter_server.md)
-### ![Setter Server](./doc/setter_server.md)
-### ![API Server](./doc/api_server.md)
+### [Configuration](./doc/configuration.md)
+### [Getter Server](./doc/getter_server.md)
+### [Setter Server](./doc/setter_server.md)
+### [API Server](./doc/api_server.md)
 
 
 
