@@ -74,7 +74,6 @@ public class Main {
             Status.getInstance().init();
             Cluster.getInstance().init();
             ClusteredCache.getInstance().init();
-            Thread.sleep(1000);
         } catch (Exception e) {
             mLogger.error("Failed to initialize", e);
             System.exit(1);
@@ -83,10 +82,10 @@ public class Main {
 
         // Deploy GetHttpServer
         try {
+            Thread.sleep(1000);
             DeploymentOptions options = new DeploymentOptions();
             options.setInstances(Math.max(1, Env.getInstance().getProcessorCount()));
             Vertx.vertx().deployVerticle(GetHttpServer.class.getName(), options);
-            Thread.sleep(1000);
         } catch (Exception e) {
             mLogger.error("Failed to deploy GetHttpServer", e);
             System.exit(2);
@@ -94,10 +93,10 @@ public class Main {
 
         // Deploy SetHttpServer
         try {
-            DeploymentOptions options = new DeploymentOptions();
-            options.setInstances(Math.max(1, Env.getInstance().getProcessorCount() / 2));
-            Vertx.vertx().deployVerticle(SetHttpServer.class.getName(), options);
             Thread.sleep(1000);
+            DeploymentOptions options = new DeploymentOptions();
+            options.setInstances(Math.max(1, Env.getInstance().getProcessorCount()));
+            Vertx.vertx().deployVerticle(SetHttpServer.class.getName(), options);
         } catch (Exception e) {
             mLogger.error("Failed to deploy SetHttpServer", e);
             System.exit(3);
@@ -105,10 +104,10 @@ public class Main {
 
         // Deploy APIHttpServer
         try {
-            DeploymentOptions options = new DeploymentOptions();
-            options.setInstances(Math.max(1, Env.getInstance().getProcessorCount() / 2));
-            Vertx.vertx().deployVerticle(ApiHttpServer.class.getName(), options);
             Thread.sleep(1000);
+            DeploymentOptions options = new DeploymentOptions();
+            options.setInstances(Math.max(1, Env.getInstance().getProcessorCount()));
+            Vertx.vertx().deployVerticle(ApiHttpServer.class.getName(), options);
         } catch (Exception e) {
             mLogger.error("Failed to deploy ApiHttpServer", e);
             System.exit(4);
