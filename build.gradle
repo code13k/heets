@@ -44,6 +44,9 @@ dependencies {
     // Hazelcast
     compile group: 'com.hazelcast', name: 'hazelcast', version: '3.10.5'
 
+    // FindBugs Annotaitons (Build for hazelcast)
+    compile group: 'com.google.code.findbugs', name: 'annotations', version: '3.0.1'
+
     // Util
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.8.1'
     compile group: 'commons-io', name: 'commons-io', version: '2.6'
