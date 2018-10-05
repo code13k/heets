@@ -74,6 +74,7 @@ public class Main {
             Status.getInstance().init();
             Cluster.getInstance().init();
             ClusteredCache.getInstance().init();
+            Thread.sleep(1000);
         } catch (Exception e) {
             mLogger.error("Failed to initialize", e);
             System.exit(1);
