@@ -9,7 +9,9 @@ cache:
   default_expires: 60
 
 # Cluster
-cluster:
-  port: 55210
-  nodes:
-    - 127.0.0.1
+#cluster:
+#  port: 55210
+#  nodes:
+#    - 192.168.100.1
+#    - 192.168.100.2
+

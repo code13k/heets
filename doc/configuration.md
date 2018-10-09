@@ -15,15 +15,16 @@ cache:
   default_expires: 60
 
 # Cluster
-cluster:
-  port: 55210
-  nodes:
-    - 127.0.0.1
+#cluster:
+#  port: 55210
+#  nodes:
+#    - 192.168.100.1
+#    - 192.168.100.2
 ```
 * Heets has three server. One is a getter server, another is setter server, and the other is restful API server. You can edit server port.
 * Heets is simple cache server. *default_expires* is used when you did not set expiration time for setting data.
 * Heets support clustering. You can cluster node by adding nodes IP. 
-  * If you don't use cluster mode, comment cluster configuration.
+  * If you want to use clustering nodes, uncomment cluster configuration and add nodes IP.
 
 
 ## logback.xml
